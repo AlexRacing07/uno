@@ -11,7 +11,7 @@ export class CardModel {
     this.special = "";
     this.isSpecial = isSpecial;
     this.id = id;
-    const parts = this.id.split('.');
+    const parts = this.id.split('.',2);
     this.color = parts[1];
     if(this.isSpecial) {
       this.special = parts[0];
