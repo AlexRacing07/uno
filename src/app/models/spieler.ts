@@ -9,6 +9,6 @@ export class SpielerModel {
 }
 
 export const Spieler: SpielerModel[] = [
-  new SpielerModel(1,"Alex"),
+  new SpielerModel(1,"Du"),
   new SpielerModel(2,"Bot")
 ]
