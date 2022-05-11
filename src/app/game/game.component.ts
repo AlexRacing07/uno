@@ -16,9 +16,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.spieler = Spieler;
-    console.log(this.spieler);
     this.cards = Cards;
-    console.log(this.cards);
   }
 
 }

@@ -1,14 +1,13 @@
 export class CardModel {
-  public isCs: boolean;  // Wenn +2 oder farbwechsel, True
+  public isCs: boolean;  // Wenn farbwechsel, True
   public digit: string;  // 0-9, +2, cs
   public color: string;  // r,g,b,y,null
-  public id: string;     //  Wenn isSpecial False: "[digit].[color]" Example: 9.y
-                         // Wenn isSpecial True: "[special].[color]" Example: +2.r, cs
+  public cardId: string;
 
-  constructor(id: string) {
+  constructor(cardId: string) {
     this.isCs = false;
-    this.id = id;
-    const parts = id.split('.',2);
+    this.cardId = cardId;
+    const parts = cardId.split('.',2);
     this.digit = parts[0];
     this.color = parts[1];
     if(this.digit.includes("cs")) {
@@ -17,11 +16,103 @@ export class CardModel {
   }
 }
 
-export const Cards: CardModel[] = [   // Ein paar Beispiel Karten
+export const Cards: CardModel[] = [   // Cards Array: (19 Zahlenkarten pro farbe, 4 cs, 2 +2 pro farbe)
+  // Red
+  new CardModel("0.r"),
+  new CardModel("1.r"),
+  new CardModel("1.r"),
+  new CardModel("2.r"),
+  new CardModel("2.r"),
+  new CardModel("3.r"),
+  new CardModel("3.r"),
+  new CardModel("4.r"),
+  new CardModel("4.r"),
   new CardModel("5.r"),
-  new CardModel("cs.null"),
-  new CardModel("+2.y"),
+  new CardModel("5.r"),
+  new CardModel("6.r"),
+  new CardModel("6.r"),
+  new CardModel("7.r"),
+  new CardModel("7.r"),
+  new CardModel("8.r"),
+  new CardModel("8.r"),
+  new CardModel("9.r"),
+  new CardModel("9.r"),
+  new CardModel("+2.r"),
+  new CardModel("+2.r"),
+
+  // Green
+  new CardModel("0.g"),
+  new CardModel("1.g"),
+  new CardModel("1.g"),
+  new CardModel("2.g"),
+  new CardModel("2.g"),
+  new CardModel("3.g"),
+  new CardModel("3.g"),
+  new CardModel("4.g"),
+  new CardModel("4.g"),
+  new CardModel("5.g"),
+  new CardModel("5.g"),
+  new CardModel("6.g"),
+  new CardModel("6.g"),
+  new CardModel("7.g"),
+  new CardModel("7.g"),
+  new CardModel("8.g"),
+  new CardModel("8.g"),
+  new CardModel("9.g"),
+  new CardModel("9.g"),
+  new CardModel("+2.g"),
+  new CardModel("+2.g"),
+
+  // Blue
+  new CardModel("0.b"),
+  new CardModel("1.b"),
+  new CardModel("1.b"),
+  new CardModel("2.b"),
+  new CardModel("2.b"),
   new CardModel("3.b"),
-  new CardModel("7.g")
+  new CardModel("3.b"),
+  new CardModel("4.b"),
+  new CardModel("4.b"),
+  new CardModel("5.b"),
+  new CardModel("5.b"),
+  new CardModel("6.b"),
+  new CardModel("6.b"),
+  new CardModel("7.b"),
+  new CardModel("7.b"),
+  new CardModel("8.b"),
+  new CardModel("8.b"),
+  new CardModel("9.b"),
+  new CardModel("9.b"),
+  new CardModel("+2.b"),
+  new CardModel("+2.b"),
+
+  // Yellow
+  new CardModel("0.y"),
+  new CardModel("1.y"),
+  new CardModel("1.y"),
+  new CardModel("2.y"),
+  new CardModel("2.y"),
+  new CardModel("3.y"),
+  new CardModel("3.y"),
+  new CardModel("4.y"),
+  new CardModel("4.y"),
+  new CardModel("5.y"),
+  new CardModel("5.y"),
+  new CardModel("6.y"),
+  new CardModel("6.y"),
+  new CardModel("7.y"),
+  new CardModel("7.y"),
+  new CardModel("8.y"),
+  new CardModel("8.y"),
+  new CardModel("9.y"),
+  new CardModel("9.y"),
+  new CardModel("+2.y"),
+  new CardModel("+2.y"),
+
+  // 4x ColorSwitch
+  new CardModel("cs.null"),
+  new CardModel("cs.null"),
+  new CardModel("cs.null"),
+  new CardModel("cs.null")
 ]
 
