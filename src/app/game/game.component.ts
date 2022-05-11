@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpielerModel, Spieler } from "src/app/models/spieler";
+import { CardModel, Cards } from "src/app/models/cards";
 
 @Component({
   selector: 'app-game',
@@ -9,12 +10,15 @@ import { SpielerModel, Spieler } from "src/app/models/spieler";
 export class GameComponent implements OnInit {
 
   spieler:SpielerModel[] = []
+  cards:CardModel[] = []
 
   constructor() { }
 
   ngOnInit(): void {
     this.spieler = Spieler;
     console.log(this.spieler);
+    this.cards = Cards;
+    console.log(this.cards);
   }
 
 }
