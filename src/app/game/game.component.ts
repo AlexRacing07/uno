@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
     console.log(Cards[15].cardId);
     this.cards = this.shuffle(Cards);
     console.log(this.cards[15].cardId);
+    Players[0].draw(44);
     console.log(Cards[15].owned);
   }
 

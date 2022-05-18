@@ -11,18 +11,18 @@ export class PlayerModel {
     this.ownedCards = [];
   }
   draw(amount: number): void {
-    var success = false;
+    var retry = true;
     var x;
     while(amount>0) {
-      do {
+      while(retry) {
         x = Math.floor(Math.random() * 88);
-        if(this.ownedCards.includes(x) && Cards[x].owned == false) {
+        if(!this.ownedCards.includes(x) && Cards[x].owned == false) {
           Cards[x].owned = true;
           this.ownedCards.push(x);
-          success = true;
+          retry = false;
         }
-      } while(success == false);
-      success = false;
+      }
+      retry = true;
       amount--;
     }
   }
