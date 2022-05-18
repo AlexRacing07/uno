@@ -16,10 +16,21 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.players = Players;
-    this.cards = Cards;
-    for(var index in this.cards) {
-      this.cards[parseInt(index)].id = parseInt(index);
+    for(var index in Cards) {
+      Cards[parseInt(index)].id = parseInt(index);
     }
+
+  }
+
+  shuffle(arr: CardModel[]): CardModel[] {
+    var j, x, i;
+    for (i = Cards.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = Cards[i];
+      Cards[i] = Cards[j];
+      Cards[j] = x;
+    }
+    return Cards;
   }
 
 }
