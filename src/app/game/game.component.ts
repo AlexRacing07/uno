@@ -24,11 +24,12 @@ export class GameComponent implements OnInit {
     this.player2 = Player2;
 
     Player1.draw(88);
-    Player1.place(10,"5.y")
+    Player1.place(10,"5.r")
     console.log("Arraylength: " + Player1.ownedCards.length);
     for(let x in Player1.ownedCards) {
       console.log(Player1.ownedCards[parseInt(x)]);
     }
+    console.log(Cards[15].owned)
   }
 }
 

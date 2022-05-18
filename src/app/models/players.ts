@@ -33,12 +33,13 @@ export class PlayerModel {
     // Überprüfen ob der Spieler die Karte hat
     if(this.ownedCards.includes(id)) {
       var lastCardVal = lastCardId.split(".");
+      var currentCardVal = Cards[id].cardId.split(".");
 
       // Überprüfen ob karte cs ist, da wenn die Karte ein cs ist, sie immer gelegt werden kann.
       if (!Cards[id].isCs) {
         // Ob die Karte wegen Farb- oder Zahlübereinstimmung gelegt werden kann
 
-        if (Cards[id].digit.includes(lastCardVal[0]) || Cards[id].color.includes(lastCardVal[1])) {
+        if (currentCardVal[0].includes(lastCardVal[0]) || currentCardVal[1].includes(lastCardVal[1])) {
 
           // cardId der gelegten Karte wird gespeichert und returned für den nächsten place() (Oberste Karte am Stapel)
           newLastCardId = Cards[id].cardId;
@@ -50,7 +51,7 @@ export class PlayerModel {
           var temp = this.ownedCards[0];
           this.ownedCards[0] = this.ownedCards[this.ownedCards.indexOf(id)]
           this.ownedCards[this.ownedCards.indexOf(id)] = temp;
-          this.ownedCards.shift();
+
         }
       }
       else {
