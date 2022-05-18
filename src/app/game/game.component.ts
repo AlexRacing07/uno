@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerModel, Players } from "src/app/models/players";
+import { PlayerModel, Player1, Player2 } from "src/app/models/players";
 import { CardModel, Cards } from "src/app/models/cards";
 
 @Component({
@@ -9,31 +9,27 @@ import { CardModel, Cards } from "src/app/models/cards";
 })
 export class GameComponent implements OnInit {
 
-  players:PlayerModel[] = []
-  cards:CardModel[] = []
+  player1: PlayerModel = Player1;
+  player2: PlayerModel = Player2;
+  cards: CardModel[] = []
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Hello World");
-    console.log(Cards[15].cardId);
-    this.cards = this.shuffle(Cards);
-    console.log(this.cards[15].cardId);
-    Players[0].draw(88);
-    console.log(Cards[15].owned);
-  }
-
-  shuffle(arr: CardModel[]): CardModel[] {
-    let j, x, i;
-    for (i = arr.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = arr[i];
-      arr[i] = arr[j];
-      arr[j] = x;
+    for(let i in Cards) {
+      Cards[parseInt(i)].id = parseInt(i);
     }
-    return arr;
-  }
+    this.cards = Cards;
+    this.player1 = Player1;
+    this.player2 = Player2;
 
+    Player1.draw(88);
+    Player1.place(10,"5.y")
+    console.log("Arraylength: " + Player1.ownedCards.length);
+    for(let x in Player1.ownedCards) {
+      console.log(Player1.ownedCards[parseInt(x)]);
+    }
+  }
 }
 
 
