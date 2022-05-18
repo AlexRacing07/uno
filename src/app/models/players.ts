@@ -1,4 +1,4 @@
-export class SpielerModel {
+export class PlayerModel {
   public id: number;
   public name: string;
 
@@ -8,7 +8,7 @@ export class SpielerModel {
   }
 }
 
-export const Spieler: SpielerModel[] = [
-  new SpielerModel(1,"Du"),
-  new SpielerModel(2,"Bot")
+export const Players: PlayerModel[] = [
+  new PlayerModel(1,"Du"),
+  new PlayerModel(2,"Bot")
 ]

@@ -1,10 +1,12 @@
 export class CardModel {
   public isCs: boolean;  // Wenn farbwechsel, True
   public digit: string;  // 0-9, +2, cs
-  public color: string;  // r,g,b,y,null
-  public cardId: string;
+  public color: string;  // r,g,b,y, wenn digit == cs, color = null. null wird dann bei Farbauswahl mit der Wunschfarbe überschrieben.
+  public cardId: string; // [cs/digit].[color]  (Beispiel: "2.y", "cs.null"). Beinhaltet die wichtigen attribute einer karte zum erstellen.
+  public id: number;     // Einzigartige Id für jede Karte
 
   constructor(cardId: string) {
+    this.id = 0;    // Vorübergehend 0. bei onInit: id = ArrayIndex
     this.isCs = false;
     this.cardId = cardId;
     const parts = cardId.split('.',2);

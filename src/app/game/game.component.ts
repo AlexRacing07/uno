@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpielerModel, Spieler } from "src/app/models/spieler";
+import { PlayerModel, Players } from "src/app/models/players";
 import { CardModel, Cards } from "src/app/models/cards";
 
 @Component({
@@ -9,14 +9,17 @@ import { CardModel, Cards } from "src/app/models/cards";
 })
 export class GameComponent implements OnInit {
 
-  spieler:SpielerModel[] = []
+  players:PlayerModel[] = []
   cards:CardModel[] = []
 
   constructor() { }
 
   ngOnInit(): void {
-    this.spieler = Spieler;
+    this.players = Players;
     this.cards = Cards;
+    for(var index in this.cards) {
+      this.cards[parseInt(index)].id = parseInt(index);
+    }
   }
 
 }
