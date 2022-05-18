@@ -16,7 +16,7 @@ export class PlayerModel {
     while(amount>0) {
       while(retry) {
         x = Math.floor(Math.random() * 88);
-        if(!this.ownedCards.includes(x) && Cards[x].owned == false) {
+        if(!this.ownedCards.includes(x) && !Cards[x].owned) {
           Cards[x].owned = true;
           this.ownedCards.push(x);
           retry = false;
