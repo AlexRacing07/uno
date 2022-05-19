@@ -16,20 +16,32 @@ export class GameComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // Karten IDs vergeben
     for(let i in Cards) {
       Cards[parseInt(i)].id = parseInt(i);
     }
+    // Lokale Objekte init
     this.cards = Cards;
     this.player1 = Player1;
     this.player2 = Player2;
+    // Beide Spieler starten mit 7 Karten
+    Player1.draw(7);
+    Player2.draw(7);
 
-    Player1.draw(88);
-    Player1.place(10,"5.r")
-    console.log("Arraylength: " + Player1.ownedCards.length);
-    for(let x in Player1.ownedCards) {
-      console.log(Player1.ownedCards[parseInt(x)]);
+    Player1.place(10,"1.r")
+
+    for(let i in Player1.ownedCards) {
+      console.log(Player1.ownedCards[parseInt(i)]);
     }
-    console.log(Cards[15].owned)
+    console.log("Karte 1: owned = " + Cards[Player1.ownedCards[0]].owned);
+    console.log("Karte 2: owned = " + Cards[Player1.ownedCards[1]].owned);
+    console.log("Karte 3: owned = " + Cards[Player1.ownedCards[2]].owned);
+    console.log("Karte 4: owned = " + Cards[Player1.ownedCards[3]].owned);
+    console.log("Karte 5: owned = " + Cards[Player1.ownedCards[4]].owned);
+    console.log("Karte 6: owned = " + Cards[Player1.ownedCards[5]].owned);
+    console.log("Karte 7: owned = " + Cards[Player1.ownedCards[6]].owned);
+
+
   }
 }
 

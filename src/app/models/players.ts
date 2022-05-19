@@ -49,9 +49,10 @@ export class PlayerModel {
 
           // Die Karte wird aus dem SpielerhandArray entfernt. Die kartenID wird im Array mit Stelle 0 ausgetauscht, und dann mit arr.shift() entfernt.
           var temp = this.ownedCards[0];
-          this.ownedCards[0] = this.ownedCards[this.ownedCards.indexOf(id)]
-          this.ownedCards[this.ownedCards.indexOf(id)] = temp;
-
+          var index = this.ownedCards.indexOf(id);
+          this.ownedCards[0] = this.ownedCards[index]
+          this.ownedCards[index] = temp;
+          this.ownedCards.shift();
         }
       }
       else {
@@ -59,8 +60,9 @@ export class PlayerModel {
         newLastCardId = Cards[id].cardId;
         Cards[id].owned = false;
         var temp = this.ownedCards[0];
-        this.ownedCards[0] = this.ownedCards[this.ownedCards.indexOf(id)]
-        this.ownedCards[this.ownedCards.indexOf(id)] = temp;
+        var index = this.ownedCards.indexOf(id);
+        this.ownedCards[0] = this.ownedCards[index]
+        this.ownedCards[index] = temp;
         this.ownedCards.shift();
       }
     }
