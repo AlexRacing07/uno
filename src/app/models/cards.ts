@@ -4,8 +4,10 @@ export class CardModel {
   public color: string;  // r,g,b,y, wenn digit == cs, color = null. null wird dann bei Farbauswahl mit der Wunschfarbe überschrieben.
   public cardId: string; // [cs/digit].[color]  (Beispiel: "2.y", "cs.null"). Beinhaltet die wichtigen attribute einer karte zum erstellen.
   public id: number;     // Einzigartige Id für jede Karte
+  public owned: boolean; // Ob bereits jemand die karte hat
 
   constructor(cardId: string) {
+    this.owned = false;
     this.id = 0;    // Vorübergehend 0. bei onInit: id = ArrayIndex
     this.isCs = false;
     this.cardId = cardId;
@@ -15,17 +17,6 @@ export class CardModel {
     if(this.digit.includes("cs")) {
       this.isCs = true;
     }
-  }
-
-  shuffle(arr: CardModel[]): CardModel[] {
-    var j, x, i;
-    for (i = arr.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = arr[i];
-      arr[i] = arr[j];
-      arr[j] = x;
-    }
-    return arr;
   }
 }
 

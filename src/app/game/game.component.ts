@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerModel, Players } from "src/app/models/players";
+import { PlayerModel, Player1, Player2 } from "src/app/models/players";
 import { CardModel, Cards } from "src/app/models/cards";
 
 @Component({
@@ -9,30 +9,28 @@ import { CardModel, Cards } from "src/app/models/cards";
 })
 export class GameComponent implements OnInit {
 
-  players:PlayerModel[] = []
-  cards:CardModel[] = []
+  player1: PlayerModel = Player1;
+  player2: PlayerModel = Player2;
+  cards: CardModel[] = []
 
   constructor() { }
 
   ngOnInit(): void {
-    this.players = Players;
-    for(var index in Cards) {
-      Cards[parseInt(index)].id = parseInt(index);
+    for(let i in Cards) {
+      Cards[parseInt(i)].id = parseInt(i);
     }
+    this.cards = Cards;
+    this.player1 = Player1;
+    this.player2 = Player2;
 
-  }
-
-  shuffle(arr: CardModel[]): CardModel[] {
-    var j, x, i;
-    for (i = Cards.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = Cards[i];
-      Cards[i] = Cards[j];
-      Cards[j] = x;
+    Player1.draw(88);
+    Player1.place(10,"5.r")
+    console.log("Arraylength: " + Player1.ownedCards.length);
+    for(let x in Player1.ownedCards) {
+      console.log(Player1.ownedCards[parseInt(x)]);
     }
-    return Cards;
+    console.log(Cards[15].owned)
   }
-
 }
 
 
