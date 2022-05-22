@@ -26,7 +26,6 @@ export class GameComponent implements OnInit {
     this.player2 = Player2;
     // Beide Spieler starten mit 7 Karten
     Player1.draw(7);
-    Player2.draw(7);
 
     //////////////////////////////////////////////////////
     //// TESTING /////////////////////////////////////////
@@ -36,9 +35,9 @@ export class GameComponent implements OnInit {
       console.log(Player1.ownedCards[parseInt(i)]);
     }
     console.log("Karte 10 owned: " + Cards[10].owned);
-    console.log("Karte Wird abgelegt...");
+    console.log("Karte wird abgelegt...");
 
-    Player1.place(10,"+2.b");
+    Player1.place(10,"+2.r");
 
     for(let i in Player1.ownedCards) {
       console.log(Player1.ownedCards[parseInt(i)]);

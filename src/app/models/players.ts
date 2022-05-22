@@ -11,8 +11,8 @@ export class PlayerModel {
     this.ownedCards = [];
   }
   draw(amount: number): void {
-    var retry = true;
-    var x;
+    let retry = true;
+    let x;
     while(amount>0) {
       while(retry) {
         x = Math.floor(Math.random() * 88);
@@ -28,11 +28,11 @@ export class PlayerModel {
   }
   place(id: number, lastCardId: string): string {
     // Standard leer damit falls nichts gelegt werden kann, nicht null
-    var newLastCardId = "";
+    let newLastCardId = "";
 
     // Überprüfen ob der Spieler die Karte hat
     if(this.ownedCards.includes(id)) {
-      var lastCardVal = lastCardId.split(".");
+      let lastCardVal = lastCardId.split(".");
 
       // Überprüfen ob karte cs ist, da wenn die Karte ein cs ist, sie immer gelegt werden kann.
       if (!Cards[id].isCs) {
@@ -47,8 +47,8 @@ export class PlayerModel {
           Cards[id].owned = false;
 
           // Die Karte wird aus dem SpielerhandArray entfernt. Die kartenID wird im Array mit Stelle 0 ausgetauscht, und dann mit arr.shift() entfernt.
-          var temp = this.ownedCards[0];
-          var index = this.ownedCards.indexOf(id);
+          let temp = this.ownedCards[0];
+          let index = this.ownedCards.indexOf(id);
           this.ownedCards[0] = this.ownedCards[index]
           this.ownedCards[index] = temp;
           this.ownedCards.shift();
@@ -58,8 +58,8 @@ export class PlayerModel {
         // Selbiges wie ab Zeile 40, nur das Kontrollen übersprungen werden da die Karte sowieso gelegt werden kann.
         newLastCardId = Cards[id].cardId;
         Cards[id].owned = false;
-        var temp = this.ownedCards[0];
-        var index = this.ownedCards.indexOf(id);
+        let temp = this.ownedCards[0];
+        let index = this.ownedCards.indexOf(id);
         this.ownedCards[0] = this.ownedCards[index]
         this.ownedCards[index] = temp;
         this.ownedCards.shift();
