@@ -12,6 +12,8 @@ export class PlayerModel {
     this.name = name;
     this.ownedCards = [];
   }
+
+  // User zieht angegebene Anzahl an Karten
   draw(amount: number): void {
     let retry = true;
     let x;
@@ -28,6 +30,8 @@ export class PlayerModel {
       amount--;
     }
   }
+
+  // Platziert eine Karte. returned die cardId der gelegten Karte für den nächsten Zug
   place(id: number, lastCardId: string): string {
     // Standard leer damit falls nichts gelegt werden kann, nicht null
     let newLastCardId = "";
