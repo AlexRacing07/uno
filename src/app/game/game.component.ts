@@ -28,20 +28,27 @@ export class GameComponent implements OnInit {
     Player1.draw(7);
     Player2.draw(7);
 
-    Player1.place(10,"1.r")
+    //////////////////////////////////////////////////////
+    //// TESTING /////////////////////////////////////////
+    //////////////////////////////////////////////////////
 
+    console.log("Player 1 Kartendeck: ");
     for(let i in Player1.ownedCards) {
       console.log(Player1.ownedCards[parseInt(i)]);
     }
-    console.log("Karte 1: owned = " + Cards[Player1.ownedCards[0]].owned);
-    console.log("Karte 2: owned = " + Cards[Player1.ownedCards[1]].owned);
-    console.log("Karte 3: owned = " + Cards[Player1.ownedCards[2]].owned);
-    console.log("Karte 4: owned = " + Cards[Player1.ownedCards[3]].owned);
-    console.log("Karte 5: owned = " + Cards[Player1.ownedCards[4]].owned);
-    console.log("Karte 6: owned = " + Cards[Player1.ownedCards[5]].owned);
-    console.log("Karte 7: owned = " + Cards[Player1.ownedCards[6]].owned);
+    console.log("Karte 10 owned: " + Cards[10].owned);
+    console.log("Player 1 Score: " + Player1.score);
 
+    console.log("----------------------------------------------");
 
+    Player1.place(10,"+2.r");
+
+    console.log("Player 1 Kartendeck nach dem legen: ");
+    for(let i in Player1.ownedCards) {
+      console.log(Player1.ownedCards[parseInt(i)]);
+    }
+    console.log("Karte 10 owned: " + Cards[10].owned);
+    console.log("Player 1 Score: " + Player1.score);
   }
 }
 
