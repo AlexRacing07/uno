@@ -13,7 +13,7 @@ export class PlayerModel {
     this.ownedCards = [];
   }
 
-  // User zieht angegebene Anzahl an Karten
+  // User zieht angegebene Anzahl an Karten. Funktion stellt sicher das die Karte nicht bereits jemand hat.
   draw(amount: number): void {
     let retry = true;
     let x;
@@ -33,8 +33,8 @@ export class PlayerModel {
 
   // Platziert eine Karte. returned die cardId der gelegten Karte für den nächsten Zug
   place(id: number, lastCardId: string): string {
-    // Standard leer damit falls nichts gelegt werden kann, nicht null
-    let newLastCardId = "";
+    // Standard die alte ID für falls nichts gelegt werden kann.
+    let newLastCardId = lastCardId;
 
     // Überprüfen ob der Spieler die Karte hat
     if(this.ownedCards.includes(id)) {
