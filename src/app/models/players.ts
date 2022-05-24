@@ -1,15 +1,15 @@
-import { CardModel, Cards } from "src/app/models/cards";
+import { Cards } from "src/app/models/cards";
 
 export class PlayerModel {
-  public id: number;
-  public name: string;
   public ownedCards: number[];
+  public score: number;
 
-  constructor(id:number, name:string) {
-    this.id = id;
-    this.name = name;
+  constructor() {
+    this.score = 0;
     this.ownedCards = [];
   }
+
+  // User zieht angegebene Anzahl an Karten. Funktion stellt sicher das die Karte nicht bereits jemand hat.
   draw(amount: number): void {
     let retry = true;
     let x;
@@ -26,9 +26,11 @@ export class PlayerModel {
       amount--;
     }
   }
+
+  // Platziert eine Karte. returned die cardId der gelegten Karte für den nächsten Zug
   place(id: number, lastCardId: string): string {
-    // Standard leer damit falls nichts gelegt werden kann, nicht null
-    let newLastCardId = "";
+    // Standard die alte ID für falls nichts gelegt werden kann.
+    let newLastCardId = lastCardId;
 
     // Überprüfen ob der Spieler die Karte hat
     if(this.ownedCards.includes(id)) {
@@ -52,6 +54,15 @@ export class PlayerModel {
           this.ownedCards[0] = this.ownedCards[index]
           this.ownedCards[index] = temp;
           this.ownedCards.shift();
+
+          // Punkte zuweisen
+          // Wenn normale Zahlenkarte
+          if(!Cards[id].digit.includes("+")) {
+            this.score = this.score + parseInt(Cards[id].digit);
+          }
+          else {
+            this.score = this.score + 20;
+          }
         }
       }
       else {
@@ -63,12 +74,13 @@ export class PlayerModel {
         this.ownedCards[0] = this.ownedCards[index]
         this.ownedCards[index] = temp;
         this.ownedCards.shift();
+        this.score = this.score + 50;
       }
     }
     return newLastCardId;
   }
 }
 
-export const Player1: PlayerModel = new PlayerModel(1,"User");
-export const Player2: PlayerModel = new PlayerModel(2, "Bot");
+export const Player1: PlayerModel = new PlayerModel();
+export const Player2: PlayerModel = new PlayerModel();
 

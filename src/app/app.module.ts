@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { GameComponent } from './game/game.component';
+import { ScoreComponent } from './score/score.component';
+import { AboutComponent } from './about/about.component';
+import { CopyrightComponent } from './copyright/copyright.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    GameComponent
+    GameComponent,
+    ScoreComponent,
+    AboutComponent,
+    CopyrightComponent
   ],
   imports: [
     BrowserModule,

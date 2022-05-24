@@ -31,18 +31,23 @@ export class GameComponent implements OnInit {
     //// TESTING /////////////////////////////////////////
     //////////////////////////////////////////////////////
 
+    console.log("Player 1 Kartendeck: ");
     for(let i in Player1.ownedCards) {
       console.log(Player1.ownedCards[parseInt(i)]);
     }
     console.log("Karte 10 owned: " + Cards[10].owned);
-    console.log("Karte wird abgelegt...");
+    console.log("Player 1 Score: " + Player1.score);
+
+    console.log("----------------------------------------------");
 
     Player1.place(10,"+2.r");
 
+    console.log("Player 1 Kartendeck nach dem legen: ");
     for(let i in Player1.ownedCards) {
       console.log(Player1.ownedCards[parseInt(i)]);
     }
     console.log("Karte 10 owned: " + Cards[10].owned);
+    console.log("Player 1 Score: " + Player1.score);
   }
 }
 
