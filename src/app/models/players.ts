@@ -3,10 +3,12 @@ import { Cards } from "src/app/models/cards";
 export class PlayerModel {
   public ownedCards: number[];
   public score: number;
+  public success: boolean;
 
   constructor() {
     this.score = 0;
     this.ownedCards = [];
+    this.success = true;
   }
 
   // User zieht angegebene Anzahl an Karten. Funktion stellt sicher das die Karte nicht bereits jemand hat.
@@ -63,9 +65,27 @@ export class PlayerModel {
           else {
             this.score = this.score + 20;
           }
+          this.success = true;
+        } else {
+          this.success = false;
         }
       }
       else {
+
+        ///////////////////////////////
+        //// TESTING, DELETE LATER ////
+        ///////////////////////////////
+        let x = Math.floor(Math.random()*4);
+        switch(x) {
+          case 0: Cards[id].color = "r"; break;
+          case 1: Cards[id].color = "g"; break;
+          case 2: Cards[id].color = "b"; break;
+          case 3: Cards[id].color = "y"; break;
+        }
+        ///////////////////////////////
+        ///////////////////////////////
+        ///////////////////////////////
+
         // Selbiges wie ab Zeile 40, nur das Kontrollen übersprungen werden da die Karte sowieso gelegt werden kann.
         newLastCardId = Cards[id].cardId;
         Cards[id].owned = false;
@@ -75,7 +95,10 @@ export class PlayerModel {
         this.ownedCards[index] = temp;
         this.ownedCards.shift();
         this.score = this.score + 50;
+        this.success = true;
       }
+    } else {
+      this.success = false;
     }
     return newLastCardId;
   }

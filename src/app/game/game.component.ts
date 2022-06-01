@@ -11,43 +11,110 @@ export class GameComponent implements OnInit {
 
   player1: PlayerModel = Player1;
   player2: PlayerModel = Player2;
-  cards: CardModel[] = []
+  cards: CardModel[] = Cards;
+
+  lastCardId: string = "";
+  lastCardVal: string[] = [];
+  winner: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
     // Karten IDs vergeben
-    for(let i in Cards) {
-      Cards[parseInt(i)].id = parseInt(i);
+    for(let i in this.cards) {
+      this.cards[parseInt(i)].id = parseInt(i);
     }
-    // Lokale Objekte init
-    this.cards = Cards;
-    this.player1 = Player1;
-    this.player2 = Player2;
-    // Beide Spieler starten mit 7 Karten
-    Player1.draw(7);
 
     //////////////////////////////////////////////////////
     //// TESTING /////////////////////////////////////////
     //////////////////////////////////////////////////////
 
-    console.log("Player 1 Kartendeck: ");
-    for(let i in Player1.ownedCards) {
-      console.log(Player1.ownedCards[parseInt(i)]);
+  }
+
+  // Die Spiel Methode. Wird ausgeführt wenn der Start Button gedrückt wird. Returned den Gewinner für Testing.
+  StartGame(): string {
+    // Karten Resetten
+    this.resetCards();
+
+    // Beide Spieler ziehen 7 Karten
+    this.player1.draw(7);
+    this.player2.draw(7);
+
+    // Erste Karte wird gelegt
+    this.generateTopCard();
+
+    let counter = 0;
+    // Gameloop. Läuft so lange bis einer der Spieler 500 Punkte erreicht oder keine Karten mehr hat.
+    while(this.player1.score < 500 && this.player2.score < 500 && this.player1.ownedCards.length > 0 && this.player1.ownedCards.length > 0) {
+      counter++;
+
+      // Spieler 1 versucht karte zu legen. Falls unmöglich, 1 Karte ziehen.
+      this.lastCardVal = this.lastCardId.split(".");
+      if(!this.lastCardVal[0].includes("+2")) {
+        for(let i in this.player1.ownedCards) {
+          this.lastCardId = this.player1.place(this.player1.ownedCards[parseInt(i)], this.lastCardId);
+          if(this.player1.success) { break; }
+        }
+        if(!this.player1.success) {
+          this.player1.draw(1);
+        }
+      }
+      else {
+        this.player1.draw(2);
+      }
+      console.log("Runde " + counter + ": Player 1 Punkte: " + this.player1.score);
+      console.log("Player 1 Anzahl Karten: " + this.player1.ownedCards.length);
+
+      // Das selbe für Spieler 2
+      this.lastCardVal = this.lastCardId.split(".");
+      if(!this.lastCardVal[0].includes("+2")) {
+        for(let i in this.player2.ownedCards) {
+          this.lastCardId = this.player2.place(this.player2.ownedCards[parseInt(i)], this.lastCardId);
+          if(this.player2.success) { break; }
+        }
+        if(!this.player2.success) {
+          this.player2.draw(1);
+        }
+      }
+      else {
+        this.player2.draw(2);
+      }
+      console.log("Player 2 Punkte: " + this.player2.score);
+      console.log("Player 2 Anzahl Karten: " + this.player1.ownedCards.length);
+
+
     }
-    console.log("Karte 10 owned: " + Cards[10].owned);
-    console.log("Player 1 Score: " + Player1.score);
 
-    console.log("----------------------------------------------");
+    // Gewinner ermitteln
 
-    Player1.place(10,"+2.r");
-
-    console.log("Player 1 Kartendeck nach dem legen: ");
-    for(let i in Player1.ownedCards) {
-      console.log(Player1.ownedCards[parseInt(i)]);
+    if(this.player1.score >= 500 || this.player1.ownedCards.length == 0) {
+      this.winner = "player1";
     }
-    console.log("Karte 10 owned: " + Cards[10].owned);
-    console.log("Player 1 Score: " + Player1.score);
+    else if(this.player2.score >= 500 || this.player2.ownedCards.length == 0) {
+      this.winner = "player2";
+    }
+
+    return this.winner;
+  }
+
+  // Mit dieser Methode werden alle Karten zurückgesetzt. Alle Karten sind im Stapel, kein Spieler hat Karten.
+  resetCards(): void {
+    // beide player.ownedCards Arrays leeren
+    this.player1.ownedCards = [];
+    this.player2.ownedCards = [];
+
+    // cards.owned überall auf false setzen
+    for(let i in this.cards) {
+      this.cards[parseInt(i)].owned = false;
+    }
+  }
+
+  // Am Anfang der StartGame() Methode ausgeführt. Randomized welche Karte am Stapel liegt. Es wird die cardId returned, die Karte ist danach nicht owned.
+  // Einzige Karte die nicht hier aufgedeckt werden kann ist eine cs karte.
+  generateTopCard(): string {
+    let id = Math.floor(Math.random() * 84);
+    this.lastCardId = this.cards[id].cardId;
+    return this.lastCardId;
   }
 }
 
