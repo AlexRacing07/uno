@@ -11,43 +11,31 @@ export class GameComponent implements OnInit {
 
   player1: PlayerModel = Player1;
   player2: PlayerModel = Player2;
-  cards: CardModel[] = []
+  cards: CardModel[] = Cards;
 
   constructor() { }
 
   ngOnInit(): void {
     // Karten IDs vergeben
-    for(let i in Cards) {
-      Cards[parseInt(i)].id = parseInt(i);
+    for(let i in this.cards) {
+      this.cards[parseInt(i)].id = parseInt(i);
     }
-    // Lokale Objekte init
-    this.cards = Cards;
-    this.player1 = Player1;
-    this.player2 = Player2;
-    // Beide Spieler starten mit 7 Karten
-    Player1.draw(7);
 
     //////////////////////////////////////////////////////
     //// TESTING /////////////////////////////////////////
     //////////////////////////////////////////////////////
 
-    console.log("Player 1 Kartendeck: ");
-    for(let i in Player1.ownedCards) {
-      console.log(Player1.ownedCards[parseInt(i)]);
-    }
-    console.log("Karte 10 owned: " + Cards[10].owned);
-    console.log("Player 1 Score: " + Player1.score);
+  }
 
-    console.log("----------------------------------------------");
+  Start(): string {
+    let winner = "";
 
-    Player1.place(10,"+2.r");
+    // Beide Spieler ziehen 7 Karten
+    this.player1.draw(7);
+    this.player2.draw(7);
 
-    console.log("Player 1 Kartendeck nach dem legen: ");
-    for(let i in Player1.ownedCards) {
-      console.log(Player1.ownedCards[parseInt(i)]);
-    }
-    console.log("Karte 10 owned: " + Cards[10].owned);
-    console.log("Player 1 Score: " + Player1.score);
+
+    return winner;
   }
 }
 
