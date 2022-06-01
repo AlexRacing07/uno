@@ -1,15 +1,11 @@
 import { Cards } from "src/app/models/cards";
 
 export class PlayerModel {
-  public id: number;
-  public name: string;
   public ownedCards: number[];
   public score: number;
 
-  constructor(id:number, name:string) {
+  constructor() {
     this.score = 0;
-    this.id = id;
-    this.name = name;
     this.ownedCards = [];
   }
 
@@ -85,6 +81,6 @@ export class PlayerModel {
   }
 }
 
-export const Player1: PlayerModel = new PlayerModel(1,"User");
-export const Player2: PlayerModel = new PlayerModel(2, "Bot");
+export const Player1: PlayerModel = new PlayerModel();
+export const Player2: PlayerModel = new PlayerModel();
 

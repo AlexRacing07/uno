@@ -26,7 +26,6 @@ export class GameComponent implements OnInit {
     this.player2 = Player2;
     // Beide Spieler starten mit 7 Karten
     Player1.draw(7);
-    Player2.draw(7);
 
     //////////////////////////////////////////////////////
     //// TESTING /////////////////////////////////////////
