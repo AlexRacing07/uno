@@ -10,7 +10,7 @@ body{
 }
 .footer{
   padding-top: 10px;
-  position: fixed;
+  position: sticky;
   left: 0;
   bottom: 12px;
   width: 100%;
@@ -67,6 +67,7 @@ body{
 
 .footer .urheberrecht{
   margin-top: 10px;
+  margin-bot: 10px;
   text-align: center;
   font-size: 13px;
   color: #3d3d3d;

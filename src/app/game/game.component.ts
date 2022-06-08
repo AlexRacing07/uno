@@ -29,85 +29,11 @@ export class GameComponent implements OnInit {
     //// TESTING /////////////////////////////////////////
     //////////////////////////////////////////////////////
 
-    console.log(this.StartGame());
   }
 
   // Die Spiel Methode. Wird ausgeführt wenn der Start Button gedrückt wird. Returned den Gewinner für Testing.
   StartGame(): string {
-    // Karten Resetten
-    this.resetCards();
 
-    // Beide Spieler ziehen 7 Karten
-    this.player1.draw(7);
-    this.player2.draw(7);
-
-    // Erste Karte wird gelegt
-    this.generateTopCard();
-
-    let counter = 0;
-    // Gameloop. Läuft so lange bis einer der Spieler 500 Punkte erreicht oder keine Karten mehr hat.
-    GameLoop:
-    while(this.player1.score < 500 && this.player2.score < 500 && this.player1.ownedCards.length > 0 && this.player1.ownedCards.length > 0) {
-      counter++;
-      this.player1.success = false;
-      this.player2.success = false;
-
-      //// PLAYER 1: ////
-
-      if (this.lastCardId.includes("+2")) {
-        this.player1.draw(2);
-      } else {
-        this.lastCardVal = this.lastCardId.split(".");
-        ForSuccess1:
-          for (let i in this.player1.ownedCards) {
-            if (this.cards[this.player1.ownedCards[parseInt(i)]].digit == this.lastCardVal[0] || this.cards[this.player1.ownedCards[parseInt(i)]].color.includes(this.lastCardVal[1])) {
-              this.lastCardId = this.player1.place(this.player1.ownedCards[parseInt(i)], this.lastCardId);
-              this.player1.success = true;
-              if(this.player1.success) break ForSuccess1;
-            }
-          }
-        if (!this.player1.success) {
-          this.player1.draw(21);
-        }
-      }
-
-      console.log("Runde: " + counter + " Player 1 Punkte: " + this.player1.score);
-      console.log("Player 1 Karten übrig: " + this.player1.ownedCards.length);
-
-      //// PLAYER 2: ////
-
-      if (this.lastCardId.includes("+2")) {
-        this.player2.draw(2);
-      } else {
-        this.lastCardVal = this.lastCardId.split(".");
-        ForSuccess2:
-          for (let i in this.player2.ownedCards) {
-            if (this.cards[this.player2.ownedCards[parseInt(i)]].digit == this.lastCardVal[0] || this.cards[this.player2.ownedCards[parseInt(i)]].color.includes(this.lastCardVal[1])) {
-              this.lastCardId = this.player2.place(this.player2.ownedCards[parseInt(i)], this.lastCardId);
-              this.player2.success = true;
-              if(this.player2.success) break ForSuccess2;
-            }
-          }
-        if (!this.player2.success) {
-          this.player2.draw(1);
-        }
-      }
-
-      console.log("Player 2 Punkte: " + this.player2.score);
-      console.log("Player 2 Karten übrig: " + this.player2.ownedCards.length);
-
-
-      if (counter > 200) break GameLoop;
-    }
-
-    // Gewinner ermitteln
-
-    if(this.player1.score >= 500 || this.player1.ownedCards.length == 0) {
-      this.winner = "Player 1";
-    }
-    else if(this.player2.score >= 500 || this.player2.ownedCards.length == 0) {
-      this.winner = "Player 2";
-    }
 
     return this.winner;
   }
