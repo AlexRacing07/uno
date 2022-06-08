@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { GameComponent } from './game/game.component';
 import { AboutComponent } from './about/about.component';
 import { CopyrightComponent } from './copyright/copyright.component';
+import { StartComponent } from './start/start.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CopyrightComponent } from './copyright/copyright.component';
     FooterComponent,
     GameComponent,
     AboutComponent,
-    CopyrightComponent
+    CopyrightComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,

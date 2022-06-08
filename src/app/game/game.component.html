@@ -1,1 +1,3 @@
-<p>Gamecomponent: Check Console.</p>
+<div *ngFor="let card of this.cards">
+  <a onclick="this.player1.place(card.id, '5.r');">{{this.card.cardId}}</a>
+</div>
