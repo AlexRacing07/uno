@@ -17,7 +17,7 @@ export class PlayerModel {
     let x;
     while(amount>0) {
       while(retry) {
-        x = Math.floor(Math.random() * 84);
+        x = Math.floor(Math.random() * 88);
         if(!this.ownedCards.includes(x) && !Cards[x].owned) {
           Cards[x].owned = true;
           this.ownedCards.push(x);
@@ -32,6 +32,8 @@ export class PlayerModel {
   // Platziert eine Karte. returned die cardId der gelegten Karte für den nächsten Zug.
   // Testet nicht mehr ob die Karte gelegt werden kann. Muss jetzt in der Gameloop manuell gemacht werden.
   place(id: number, lastCardId: string): string {
+
+    console.log("Player 1 tried to place card: " + id);
     // Standard die alte ID für falls nichts gelegt werden kann.
     let newLastCardId = lastCardId;
 

@@ -16,19 +16,24 @@ export class GameComponent implements OnInit {
   lastCardId: string = "";
   lastCardVal: string[] = [];
   winner: string = "";
+  counter: number = 0;
 
-  constructor() { }
+  constructor() {
+    this.counter = 0;
+  }
 
   ngOnInit(): void {
     // Karten IDs vergeben
     for(let i in this.cards) {
       this.cards[parseInt(i)].id = parseInt(i);
     }
+    this.player1 = Player1;
+    this.player2 = Player2;
 
-    //////////////////////////////////////////////////////
-    //// TESTING /////////////////////////////////////////
-    //////////////////////////////////////////////////////
-
+    this.resetCards();
+    this.generateTopCard();
+    this.player1.draw(7);
+    this.player2.draw(7);
   }
 
   // Die Spiel Methode. Wird ausgeführt wenn der Start Button gedrückt wird. Returned den Gewinner für Testing.
@@ -56,6 +61,10 @@ export class GameComponent implements OnInit {
     let id = Math.floor(Math.random() * 84);
     this.lastCardId = this.cards[id].cardId;
     return this.lastCardId;
+  }
+
+  increaseCounter(): void {
+    this.counter = this.counter + 1;
   }
 }
 

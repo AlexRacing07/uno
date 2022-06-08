@@ -10,10 +10,10 @@ body{
 }
 .footer{
   padding-top: 10px;
-  position: sticky;
+  position: fixed;
   margin-top: auto;
   left: 0;
-  bottom: 12px;
+  bottom: 0px;
   width: 100%;
   background-color: white;
   text-align: center;
