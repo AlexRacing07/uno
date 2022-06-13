@@ -35,11 +35,6 @@ export class GameComponent implements OnInit {
   }
 
   // Die Spiel Methode. Wird ausgeführt wenn der Start Button gedrückt wird. Returned den Gewinner für Testing.
-  StartGame(): string {
-
-
-    return this.winner;
-  }
 
   // Mit dieser Methode werden alle Karten zurückgesetzt. Alle Karten sind im Stapel, kein Spieler hat Karten.
   resetCards(): void {
@@ -67,9 +62,22 @@ export class GameComponent implements OnInit {
     else if(this.turn.includes("player2")) { this.turn = "player1"; }
   }
   place(player: PlayerModel, id: number): void {
-    this.lastCardId = player.place(id, this.lastCardId);
-    if(this.turn.includes("player1")) { this.turn = "player2"; }
-    else if(this.turn.includes("player2")) { this.turn = "player1"; }
+    let stringarr: string[] = player.place(id, this.lastCardId);
+    this.lastCardId = stringarr[0];
+    if(stringarr[1].includes("true")) {
+      if(this.turn.includes("player1")) { this.turn = "player2"; }
+      else if(this.turn.includes("player2")) { this.turn = "player1"; }
+    }
+  }
+
+  plus2(): any {
+    if(this.turn.includes("player1")) {
+      this.draw(this.player1, 2);
+    }
+    else if(this.turn.includes("player2")) {
+      this.draw(this.player2, 2);
+    }
+    return true;
   }
 }
 

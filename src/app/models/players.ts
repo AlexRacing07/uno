@@ -31,16 +31,43 @@ export class PlayerModel {
 
   // Platziert eine Karte. returned die cardId der gelegten Karte für den nächsten Zug.
   // Testet nicht mehr ob die Karte gelegt werden kann. Muss jetzt in der Gameloop manuell gemacht werden.
-  place(id: number, lastCardId: string): string {
 
-    console.log("Player 1 tried to place card: " + id);
-    // Standard die alte ID für falls nichts gelegt werden kann.
-    let newLastCardId = lastCardId;
+  place(id: number, lastCardId: string): string[] {
 
-    // Überprüfen ob der Spieler die Karte hat
-    if(this.ownedCards.includes(id)) {
-      // Last Card ID setzen
-      newLastCardId = Cards[id].cardId;
+    // Standard die alte id und auf false
+    let newLastCardId: string[] = [lastCardId, "false"];
+
+    // Schauen ob es eine cs karte ist
+    if(!Cards[id].isCs) {
+      let temp = lastCardId.split(".");
+      if(temp[0].includes(Cards[id].digit) || temp[1].includes(Cards[id].color)) {
+        // LastCardId updaten
+        newLastCardId[0] = Cards[id].cardId;
+
+        // Kartenattribut owned wird auf false gesetzt.
+        Cards[id].owned = false;
+
+        // Die Karte wird aus dem SpielerhandArray entfernt. Die kartenID wird im Array mit Stelle 0 ausgetauscht, und dann mit arr.shift() entfernt.
+        let temp = this.ownedCards[0];
+        let index = this.ownedCards.indexOf(id);
+        this.ownedCards[0] = this.ownedCards[index]
+        this.ownedCards[index] = temp;
+        this.ownedCards.shift();
+        newLastCardId[1] = "true";
+
+        // Punkte verteilen
+        if(Cards[id].digit.includes("+2")) {
+          this.score+=20;
+        }
+        else {
+          this.score+=parseInt(Cards[id].digit);
+        }
+      }
+
+    }
+    else {
+      // LastCardId updaten
+      newLastCardId[0] = Cards[id].cardId;
 
       // Kartenattribut owned wird auf false gesetzt.
       Cards[id].owned = false;
@@ -51,18 +78,9 @@ export class PlayerModel {
       this.ownedCards[0] = this.ownedCards[index]
       this.ownedCards[index] = temp;
       this.ownedCards.shift();
+      newLastCardId[1] = "true";
 
-      // Punkte zuweisen
-      // Wenn normale Zahlenkarte
-      if(Cards[id].digit.includes("+2")) {
-        this.score += 20;
-      }
-      else if(Cards[id].digit.includes("cs")) {
-        this.score += 50;
-      }
-      else {
-        this.score += parseInt(Cards[id].digit);
-      }
+      this.score+=50;
     }
     return newLastCardId;
   }

@@ -11,6 +11,7 @@
 
 <br><br><br><br><br><br><br>
 
+<!-- Zug schrift -->
 <div class="turn" *ngIf="turn.includes('player1')">
   <p>Spieler 1 ist am Zug!</p>
 </div>
@@ -18,8 +19,17 @@
   <p>Spieler 2 ist am Zug!</p>
 </div>
 
+<div class="score2">
+  <p>Spieler 2 Punktestand: {{player2.score}}</p>
+</div>
+
+<div class="score1">
+  <p>Spieler 1 Punktestand: {{player1.score}}</p>
+</div>
+
+<!-- Zugstapel -->
 <div class="drawPile" *ngIf="turn.includes('player1')">
-  <a (click)="draw(player1, 1)" (click)="turn = 'player2'">
+  <a (click)="draw(player1, 1)">
     <img src="./assets/Cards/back.png" width="80" height=auto>
   </a>
   <p>Ziehe eine Karte!</p>
@@ -36,8 +46,14 @@
 
 <!-- Player 1 Karten -->
 <div class="container" *ngFor="let card of player1.ownedCards">
-  <a>
+  <div *ngIf="turn.includes('player1')">
+    <a (click)="place(player1,cards[card].id)">
+      <img class="player" src="./assets/Cards/{{cards[card].cardId}}.png" width="80" height=auto>
+    </a>
+  </div>
+  <div *ngIf="turn.includes('player2')">
     <img class="player" src="./assets/Cards/{{cards[card].cardId}}.png" width="80" height=auto>
-  </a>
+  </div>
 </div>
 
+<div *ngIf="lastCardId.includes('+2'); then plus2()"></div>
