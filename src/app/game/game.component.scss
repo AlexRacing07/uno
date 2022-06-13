@@ -13,9 +13,9 @@ a:hover {
 }
 
 .stack {
-  position: relative;
+  position: fixed;
   left: 32%;
-  width: auto;
+  top: 30%;
 }
 
 .drawPile {
@@ -42,7 +42,7 @@ br.shortBr {
 .score1 {
   position: fixed;
   left: 2%;
-  bottom: 25%;
+  top: 60%;
   font-size: 21px;
   font-weight: bold;
 }
@@ -54,3 +54,48 @@ br.shortBr {
   font-size: 21px;
   font-weight: bold;
 }
+
+.csr {
+  position: fixed;
+  width: 4%;
+  height: 2%;
+  left: 2%;
+  color: red;
+  fill: red;
+  top: 65%;
+}
+.csg {
+  position: fixed;
+  width: 4%;
+  height: 2%;
+  left: 2%;
+  color: green;
+  fill: green;
+  top: 68%;
+}
+.csb {
+  position: fixed;
+  width: 4%;
+  height: 2%;
+  left: 2%;
+  color: blue;
+  fill: blue;
+  top: 71%;
+}
+.csy {
+  position: fixed;
+  width: 4%;
+  height: 2%;
+  left: 2%;
+  color: yellow;
+  fill: yellow;
+  top: 74%;
+}
+
+.winner {
+  position: fixed;
+  left: 50%;
+  font-size: 30px;
+  top: 32%;
+}
+
