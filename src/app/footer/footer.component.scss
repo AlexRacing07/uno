@@ -9,17 +9,18 @@ body{
   background-color: antiquewhite;
 }
 .footer{
-  padding-top: 10px;
+  padding-top: 0px;
   position: fixed;
+  margin-top: auto;
   left: 0;
-  bottom: 12px;
+  bottom: 0px;
   width: 100%;
   background-color: white;
   text-align: center;
 }
 .footer .social{
   text-align: center;
-  padding-bottom: 12px;
+  padding-bottom: 6px;
   color: #3d3d3d;
 }
 
@@ -67,7 +68,9 @@ body{
 
 .footer .urheberrecht{
   margin-top: 10px;
+  margin-bot: 10px;
   text-align: center;
   font-size: 13px;
   color: #3d3d3d;
 }
+

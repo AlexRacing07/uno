@@ -1,0 +1,56 @@
+a:hover {
+  cursor: pointer;
+}
+
+.container {
+  position: relative;
+  left: 20%;
+}
+
+.player {
+  float: left;
+  margin-left: -45px;
+}
+
+.stack {
+  position: relative;
+  left: 32%;
+  width: auto;
+}
+
+.drawPile {
+  position: fixed;
+  left: 5%;
+  top: 40%;
+}
+
+br.shortBr {
+  display: block;
+  margin-top: 10px;
+  line-height: 22px;
+  content: " ";
+}
+
+.turn {
+  position: fixed;
+  left: 2%;
+  top: 20%;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.score1 {
+  position: fixed;
+  left: 2%;
+  bottom: 25%;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.score2 {
+  position: fixed;
+  left: 2%;
+  top: 30%;
+  font-size: 21px;
+  font-weight: bold;
+}
