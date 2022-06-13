@@ -1,37 +1,43 @@
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <script src="game.component.ts">
-    this.counter = 0;
-  </script>
 </head>
 
-<div class="player2">
-  <table class="table">
-    <thead>
-      <tr>
-        <td *ngFor="let card of this.player2.ownedCards">
-          <a>
-            <img src="./assets/Cards/back.png" width="80" height=auto>
-          </a>
-        </td>
-      </tr>
-    </thead>
-  </table>
+<br class="shortBr">
+
+<!-- Player 2 Karten -->
+<div class="container" *ngFor="let card of player2.ownedCards">
+  <img class="player" src="./assets/Cards/back.png" width="80" height=auto>
 </div>
 
-<div class="player1">
-  <table class="table">
-    <thead>
-      <tr>
-        <td *ngFor="let card of this.player1.ownedCards">
-          <div>
-            <a>
-              <img src="./assets/Cards/{{this.cards[card].cardId}}.png" width="80" height=auto>
-            </a>
-          </div>
-        </td>
-      </tr>
-    </thead>
-  </table>
+<br><br><br><br><br><br><br>
+
+<div class="turn" *ngIf="turn.includes('player1')">
+  <p>Spieler 1 ist am Zug!</p>
+</div>
+<div class="turn" *ngIf="turn.includes('player2')">
+  <p>Spieler 2 ist am Zug!</p>
+</div>
+
+<div class="drawPile" *ngIf="turn.includes('player1')">
+  <a (click)="draw(player1, 1)" (click)="turn = 'player2'">
+    <img src="./assets/Cards/back.png" width="80" height=auto>
+  </a>
+  <p>Ziehe eine Karte!</p>
+</div>
+<div class="drawPile" *ngIf="turn.includes('player2')">
+  <img src="./assets/Cards/back.png" width="80" height=auto>
+</div>
+
+<div class="stack">
+  <img src="./assets/Cards/{{lastCardId}}.png" width="60" height="94.83">
+</div>
+
+<br><br>
+
+<!-- Player 1 Karten -->
+<div class="container" *ngFor="let card of player1.ownedCards">
+  <a>
+    <img class="player" src="./assets/Cards/{{cards[card].cardId}}.png" width="80" height=auto>
+  </a>
 </div>
 

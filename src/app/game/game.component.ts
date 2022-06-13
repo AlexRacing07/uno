@@ -16,11 +16,9 @@ export class GameComponent implements OnInit {
   lastCardId: string = "";
   lastCardVal: string[] = [];
   winner: string = "";
-  counter: number = 0;
+  turn: string = "player1";
 
-  constructor() {
-    this.counter = 0;
-  }
+  constructor() {}
 
   ngOnInit(): void {
     // Karten IDs vergeben
@@ -63,8 +61,15 @@ export class GameComponent implements OnInit {
     return this.lastCardId;
   }
 
-  increaseCounter(): void {
-    this.counter = this.counter + 1;
+  draw(player: PlayerModel, amount: number): void {
+    player.draw(amount);
+    if(this.turn.includes("player1")) { this.turn = "player2"; }
+    else if(this.turn.includes("player2")) { this.turn = "player1"; }
+  }
+  place(player: PlayerModel, id: number): void {
+    this.lastCardId = player.place(id, this.lastCardId);
+    if(this.turn.includes("player1")) { this.turn = "player2"; }
+    else if(this.turn.includes("player2")) { this.turn = "player1"; }
   }
 }
 

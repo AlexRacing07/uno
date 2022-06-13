@@ -2,22 +2,39 @@ a:hover {
   cursor: pointer;
 }
 
-.player1 {
-  position: absolute;
-  top: 62%;
-  left: 15%;
+.container {
+  position: relative;
+  left: 20%;
 }
 
-.player2 {
-  position: absolute;
-  top: 16%;
-  left: 15%;
+.player {
+  float: left;
+  margin-left: -45px;
 }
 
-.staple {
-
+.stack {
+  position: relative;
+  left: 32%;
+  width: auto;
 }
 
-.pile {
+.drawPile {
+  position: fixed;
+  left: 5%;
+  top: 40%;
+}
 
+br.shortBr {
+  display: block;
+  margin-top: 10px;
+  line-height: 22px;
+  content: " ";
+}
+
+.turn {
+  position: fixed;
+  left: 2%;
+  top: 20%;
+  font-size: 24px;
+  font-style: oblique;
 }
