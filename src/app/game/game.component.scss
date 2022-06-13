@@ -2,19 +2,16 @@ a:hover {
   cursor: pointer;
 }
 
-.player {
-  position: relative;
-  float: left;
-  margin-left: -60px;
-  padding: 0px;
+.player1 {
+  position: absolute;
+  top: 62%;
+  left: 15%;
 }
 
-.player a {
-
-}
-
-.player b {
-
+.player2 {
+  position: absolute;
+  top: 16%;
+  left: 15%;
 }
 
 .staple {

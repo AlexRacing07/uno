@@ -1,23 +1,37 @@
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="game.component.ts">
+    this.counter = 0;
+  </script>
+</head>
 
-<div class="player b">
-  <div class="player" *ngFor="let card of this.player2.ownedCards">
-    <img src="./assets/Cards/back.png" width="100" height=auto>
-  </div>
+<div class="player2">
+  <table class="table">
+    <thead>
+      <tr>
+        <td *ngFor="let card of this.player2.ownedCards">
+          <a>
+            <img src="./assets/Cards/back.png" width="80" height=auto>
+          </a>
+        </td>
+      </tr>
+    </thead>
+  </table>
 </div>
 
-<div class="pile">
-
-</div>
-
-<div class="staple">
-
-</div>
-
-<div class="player a">
-  <div class="player" *ngFor="let card of this.player1.ownedCards">
-    <a>
-      <img src="./assets/Cards/{{this.cards[card].cardId}}.png" width="100" height=auto>
-    </a>
-  </div>
+<div class="player1">
+  <table class="table">
+    <thead>
+      <tr>
+        <td *ngFor="let card of this.player1.ownedCards">
+          <div>
+            <a>
+              <img src="./assets/Cards/{{this.cards[card].cardId}}.png" width="80" height=auto>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </thead>
+  </table>
 </div>
 
