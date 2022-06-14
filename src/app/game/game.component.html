@@ -18,9 +18,6 @@
 </div>
 <div class="turn" *ngIf="turn.includes('player2')">
   <p>Der Bot ist am Zug!</p>
-  <script>
-
-  </script>
 </div>
 
 
@@ -40,7 +37,7 @@
   <a (click)="colorswitch('y', lastId)"><div class="csy">Gelb</div></a>
 </div>
 
-<div *ngIf="turn.includes('player2')?player2random():false">;</div>
+<div *ngIf="turn.includes('player2')?player2random():false"></div>
 
 <p class="winner" *ngIf="player1.score >= 500 || player1.ownedCards.length == 0">Du hast gewonnen!</p>
 <p class="winner" *ngIf="player2.score >= 500 || player2.ownedCards.length == 0">Der Bot hat gewonnen</p>
