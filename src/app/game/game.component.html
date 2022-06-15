@@ -1,31 +1,46 @@
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <br class="shortBr">
 
 <!-- Player 2 Karten -->
 <div class="container" *ngFor="let card of player2.ownedCards">
-  <img class="player" src="./assets/Cards/back.png" width="80" height=auto>
+  <img class="player" src="./assets/Cards/{{cards[card].cardId}}.png" width="80" height=auto>
 </div>
 
 <br><br><br><br><br><br><br>
 
 <!-- Zug schrift -->
 <div class="turn" *ngIf="turn.includes('player1')">
-  <p>Spieler 1 ist am Zug!</p>
+  <p>Du bist am Zug!</p>
 </div>
 <div class="turn" *ngIf="turn.includes('player2')">
-  <p>Spieler 2 ist am Zug!</p>
+  <p>Der Bot ist am Zug!</p>
 </div>
 
+
+
 <div class="score2">
-  <p>Spieler 2 Punktestand: {{player2.score}}</p>
+  <p>Bot Punktestand: {{player2.score}}</p>
 </div>
 
 <div class="score1">
-  <p>Spieler 1 Punktestand: {{player1.score}}</p>
+  <p>Dein Punktestand: {{player1.score}}</p>
 </div>
+
+<div *ngIf="showCs && turn.includes('player1')">
+  <a (click)="colorswitch('r', lastId)"><div class="csr">Rot</div></a>
+  <a (click)="colorswitch('g', lastId)"><div class="csg">Grün</div></a>
+  <a (click)="colorswitch('b', lastId)"><div class="csb">Blau</div></a>
+  <a (click)="colorswitch('y', lastId)"><div class="csy">Gelb</div></a>
+</div>
+
+<div *ngIf="turn.includes('player2')?player2random():false"></div>
+
+<p class="winner" *ngIf="player1.score >= 500 || player1.ownedCards.length == 0">Du hast gewonnen!</p>
+<p class="winner" *ngIf="player2.score >= 500 || player2.ownedCards.length == 0">Der Bot hat gewonnen</p>
 
 <!-- Zugstapel -->
 <div class="drawPile" *ngIf="turn.includes('player1')">
@@ -42,7 +57,7 @@
   <img src="./assets/Cards/{{lastCardId}}.png" width="60" height="94.83">
 </div>
 
-<br><br>
+<br><br><br><br><br><br>
 
 <!-- Player 1 Karten -->
 <div class="container" *ngFor="let card of player1.ownedCards">
@@ -56,4 +71,4 @@
   </div>
 </div>
 
-<div *ngIf="lastCardId.includes('+2'); then plus2()"></div>
+

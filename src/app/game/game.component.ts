@@ -15,8 +15,9 @@ export class GameComponent implements OnInit {
 
   lastCardId: string = "";
   lastCardVal: string[] = [];
-  winner: string = "";
   turn: string = "player1";
+  lastId: number = -1;
+  showCs: boolean = false;
 
   constructor() {}
 
@@ -62,22 +63,75 @@ export class GameComponent implements OnInit {
     else if(this.turn.includes("player2")) { this.turn = "player1"; }
   }
   place(player: PlayerModel, id: number): void {
-    let stringarr: string[] = player.place(id, this.lastCardId);
-    this.lastCardId = stringarr[0];
-    if(stringarr[1].includes("true")) {
-      if(this.turn.includes("player1")) { this.turn = "player2"; }
-      else if(this.turn.includes("player2")) { this.turn = "player1"; }
+    if(this.turn.includes(player.name)) {
+      let stringarr: string[] = player.place(id, this.lastCardId);
+      this.lastCardId = stringarr[0];
+      if (stringarr[1].includes("true") && !this.lastCardId.includes("cs")) {
+        if (this.turn.includes("player1")) {
+          this.turn = "player2";
+        } else if (this.turn.includes("player2")) {
+          this.turn = "player1";
+        }
+      }
+      if(this.lastCardId.includes("+2")) {
+        this.plus2()
+      }
+      if(stringarr[1].includes("true")) {
+        this.lastId = id;
+      }
+      if(this.cards[id].isCs && stringarr[1].includes("true")) {
+        this.showCs = true;
+      }
     }
   }
 
-  plus2(): any {
+  plus2(): void {
     if(this.turn.includes("player1")) {
       this.draw(this.player1, 2);
     }
     else if(this.turn.includes("player2")) {
       this.draw(this.player2, 2);
     }
-    return true;
+  }
+
+  colorswitch(color: string, id: number): void {
+    this.cards[id].color = color;
+    switch(color) {
+      case "r": this.cards[id].cardId = "cs.r"; this.lastCardId = "cs.r"; break;
+      case "g": this.cards[id].cardId = "cs.g"; this.lastCardId = "cs.g"; break;
+      case "b": this.cards[id].cardId = "cs.b"; this.lastCardId = "cs.b"; break;
+      case "y": this.cards[id].cardId = "cs.y"; this.lastCardId = "cs.y"; break;
+    }
+    if (this.turn.includes("player1")) {
+      this.turn = "player2";
+    }
+    else if (this.turn.includes("player2")) {
+      this.turn = "player1";
+    }
+    this.showCs = false;
+  }
+
+  player2random(): void {
+    setTimeout(() => {
+      let x = 0;
+      let arr: string[] = [this.lastCardId, "false"];
+      while(x < this.player2.ownedCards.length) {
+        arr = this.player2.place(this.player2.ownedCards[x], this.lastCardId);
+        if(arr[1].includes("true")) {
+          this.lastCardId = arr[0];
+          this.lastId = this.player2.ownedCards[x];
+          break;
+        }
+        x++;
+      }
+      if(arr[1].includes("false")) {
+        this.player2.draw(1);
+      }
+      if(this.cards[this.lastId].isCs) {
+        this.colorswitch("r", this.lastId);
+      }
+      this.turn = "player1";
+    }, 1000)
   }
 }
 

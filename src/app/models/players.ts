@@ -4,8 +4,10 @@ export class PlayerModel {
   public ownedCards: number[];
   public score: number;
   public success: boolean;
+  public name: string;
 
-  constructor() {
+  constructor(name: string) {
+    this.name = name
     this.score = 0;
     this.ownedCards = [];
     this.success = false;
@@ -86,6 +88,6 @@ export class PlayerModel {
   }
 }
 
-export const Player1: PlayerModel = new PlayerModel();
-export const Player2: PlayerModel = new PlayerModel();
+export const Player1: PlayerModel = new PlayerModel("player1");
+export const Player2: PlayerModel = new PlayerModel("player2");
 
